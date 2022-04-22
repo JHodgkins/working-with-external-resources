@@ -15,9 +15,9 @@ function getData(url, cb) {
 function getTableHeaders(obj) {
     var tableHeaders = [];
     Object.keys(obj).forEach(function(key) {
-        tableHeaders.push(`<td>${key}</td>`)
+        tableHeaders.push(`<th>${key}</th>`)
     })
-    return `<tr>${tableHeaders}</tr>`
+    return `<thead><tr>${tableHeaders}</tr></thead>`
 }
 
 function generatePaginationButtons(next, prev) {
@@ -56,6 +56,6 @@ function writeToDocument(url) {
             tableRows.push(`<tr>${dataRow}</tr>`);
             //element.innerHTML += '<p>' + item.name + '</p>';
         });
-        element.innerHTML = `<table>${tableHeaders}${tableRows}</table>${pagination}`;
+        element.innerHTML = `<table>${tableHeaders}${tableRows}</table>${pagination}`.replace(/,/g,""); // / shows it is a regular expression, g means all, empty space is what is being replaced with.
     });
 }
